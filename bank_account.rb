@@ -5,12 +5,23 @@ class BankAccount
   @@interest_rate = 0.0
   @@accounts = []
 
+
+
+  def self.create
+    @@accounts << BankAccount.new #calls BankAccount.new and adds the new object to @@accounts so that we can find it again in the future. --- basically the idea is : the bank can store the accounts it has into a list(array) and then check back on how many accounts they hold vs the instance of account which can only see that particular customer's account
+    return @@accounts.last ### this is so we return the newest accoutn that is being created with this class method. the bank can check the total # of accounts any time by accessing @@accounts array
+  end
+
+  #Add a class method called total_funds that returns the sum of all balances across all accounts in @@accounts.
+  #This needs to be a class method because it does not pertain to any single, specific account.
+  def total_funds
+
+  end
+
   #Add an initialize instance method that sets @balance to zero. You should also add reader and writer methods for balance to your class. Balance is stored in an instance variable because the value needs to be different from account to account.
 
   def initialize
     @balance = 0
-
-
   end
 
   #READER
@@ -25,13 +36,39 @@ class BankAccount
 
   #WRITER
 
-  def write_balance(balance)
-    @balanbce = balance
+  def start_balance=(balance)
+    @balance += balance
+  end
+  #
+  # Add an instance method called deposit that accepts a number as an argument and adds that amount to the account's balance.
+  # This needs to be an instance method because it pertains to a single, specific account.
+
+#INSTANCE METHODS
+  def deposit(amount)
+    @balance += amount
+  end
+
+  def withdraw(amount)
+    @balance -= amount
+
   end
 
 end
 
-td_account = BankAccount.new
-puts td_account.balance
-puts td_account.write_balance(10)
-puts td_account.balance
+
+my_account = BankAccount.create
+your_account = BankAccount.create
+puts my_account.balance # 0
+puts BankAccount.total_funds # 0
+my_account.deposit(200)
+your_account.deposit(1000)
+puts my_account.balance # 200
+puts your_account.balance # 1000
+puts BankAccount.total_funds # 1200
+BankAccount.interest_time
+puts my_account.balance # 202.0
+puts your_account.balance # 1010.0
+puts BankAccount.total_funds # 1212.0
+my_account.withdraw(50)
+puts my_account.balance # 152.0
+puts BankAccount.total_funds # 1162.0
