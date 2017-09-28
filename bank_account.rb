@@ -14,7 +14,15 @@ class BankAccount
 
   #Add a class method called total_funds that returns the sum of all balances across all accounts in @@accounts.
   #This needs to be a class method because it does not pertain to any single, specific account.
-  def total_funds
+  def self.total_funds
+    total = 0
+    @@accounts.each do |account|
+      total += account.balance
+    end
+    return total
+  end
+
+  def self.interest_time
 
   end
 
@@ -25,9 +33,6 @@ class BankAccount
   end
 
   #READER
-
-
-
 # Add an initialize instance method that sets @balance to zero. You should also add reader and writer methods for balance to your class. Balance is stored in an instance variable because the value needs to be different from account to account
 
   def balance
@@ -36,7 +41,7 @@ class BankAccount
 
   #WRITER
 
-  def start_balance=(balance)
+  def first_deposit=(balance)
     @balance += balance
   end
   #
@@ -58,17 +63,30 @@ end
 
 my_account = BankAccount.create
 your_account = BankAccount.create
+puts '-'*33
 puts my_account.balance # 0
+puts '-'*33
 puts BankAccount.total_funds # 0
+puts '-'*33
 my_account.deposit(200)
 your_account.deposit(1000)
 puts my_account.balance # 200
+puts '-'*33
 puts your_account.balance # 1000
+puts '-'*33
 puts BankAccount.total_funds # 1200
+puts '-'*33
 BankAccount.interest_time
+puts '-'*33
 puts my_account.balance # 202.0
+puts '-'*33
 puts your_account.balance # 1010.0
+puts '-'*33
 puts BankAccount.total_funds # 1212.0
+puts '-'*33
 my_account.withdraw(50)
+puts '-'*33
 puts my_account.balance # 152.0
+puts '-'*33
 puts BankAccount.total_funds # 1162.0
+puts '-'*33
