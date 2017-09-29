@@ -2,7 +2,7 @@
 class BankAccount
   # Add a class variable called @@interest_rate that is a float representing the interest rate for all the accounts in the bank. This is a class variable because it is the same value for all accounts.
   # Add another class variable called @@accounts that starts as an empty array. This will eventually store the list of all bank accounts in the bank.
-  @@interest_rate = 0.0
+  @@interest_rate = 2.25/100
   @@accounts = []
 
 
@@ -12,19 +12,24 @@ class BankAccount
     return @@accounts.last ### this is so we return the newest accoutn that is being created with this class method. the bank can check the total # of accounts any time by accessing @@accounts array
   end
 
+
   #Add a class method called total_funds that returns the sum of all balances across all accounts in @@accounts.
   #This needs to be a class method because it does not pertain to any single, specific account.
   def self.total_funds
     total = 0
     @@accounts.each do |account|
-      total += account.balance
+      total += account.balance #we can call an instance function on the array entry because it is an instance that was stored, even if it is in the class method.
     end
-    return total
+    return total # always return function value outside the loop
   end
 
   def self.interest_time
-
+    @@accounts.each do |account|
+    interest = account.balance * @@interest_rate
+    account.deposit(interest)
+    end
   end
+
 
   #Add an initialize instance method that sets @balance to zero. You should also add reader and writer methods for balance to your class. Balance is stored in an instance variable because the value needs to be different from account to account.
 
