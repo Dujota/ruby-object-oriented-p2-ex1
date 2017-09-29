@@ -24,9 +24,9 @@ class Book
   def self.overdue_books
 
   end
-  # a class method browse
+  # a class method browse This class method should return a random book from @@on_shelf
   def self.browse
-
+    @@on_shelf.sample
   end
   # a class method available that returns value @@on_shelf
   def self.available
@@ -56,10 +56,12 @@ class Book
     def return_to_library
 
     end
-    # an instance method lent_out?
+    # an instance method lent_out? This instance method return true if a book has already been borrowed and false otherwise.
     def lent_out?
-
+      @@on_shelf.include?(self) #checks if the the book we pass in with this instance method is part of the array or not and returns boolean value
     end
+
+
 
 
 
