@@ -24,9 +24,9 @@ class BankAccount
   end
 
   def self.interest_time
-    @@accounts.each do |account|
-    interest = account.balance * @@interest_rate
-    account.deposit(interest)
+    @@accounts.each do |account| #iterate through array which is |account|
+    interest = account.balance * @@interest_rate #local variable that only exists in this method is the total interest rate per entry in array
+    account.deposit(interest) #we need to add that interest to the accounts by calling our deposit
     end
   end
 
