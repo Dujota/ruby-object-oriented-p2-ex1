@@ -10,9 +10,31 @@ class Book
     due_date = @@due_date
   end
 
-  def self.create #class method
+  def self.create ## a class method create
     @@on_shelf << Book.new(title, author, isbn) #calls Book.new and shovels entry into array
     return @@on_shelf.last #returns the newest book added to the on_shelf array
+  end
+
+  # a class method current_due_date
+  def self.current_due_date
+
+  end
+
+  # a class method overdue_books
+  def class.overdue_books
+
+  end
+  # a class method browse
+  def self.browse
+
+  end
+  # a class method available
+  def self.available
+
+  end
+  # a class method borrowed
+  def self.borrowed
+
   end
 
   def read_due
@@ -27,14 +49,17 @@ class Book
       @isbn = isbn
     end
     # an instance method borrow
+    def borrow
+
+    end
     # an instance method return_to_library
+    def return_to_library
+
+    end
     # an instance method lent_out?
-    # a class method create
-    # a class method current_due_date
-    # a class method overdue_books
-    # a class method browse
-    # a class method available
-    # a class method borrowed
+    def lent_out?
+
+    end
 
 
 
