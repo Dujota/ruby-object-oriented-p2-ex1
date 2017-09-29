@@ -15,9 +15,9 @@ class Book
     return @@on_shelf.last #returns the newest book added to the on_shelf array
   end
 
-  # a class method current_due_date
+  # a class method current_due_date --method should return the due date for books taken out today.
   def self.current_due_date
-
+    Time.new + (60*60*24*7)
   end
 
   # a class method overdue_books
@@ -50,7 +50,16 @@ class Book
     end
     # an instance method borrow
     def borrow
-
+      if lent_out? == false #evaluate the lent_out? method, if it confirms that the book is available ex: lent_out? = false, then
+        self.due_date = Book.current_due_date #set the due date on the book objects() self.due_date) & update the due date with the class method
+        @@on_shelf.delete(self)
+        @@on_loan << self
+        puts "the book is all yours"
+        return true
+      else
+        puts "sorry better luck next time"
+        return false
+      end
     end
     # an instance method return_to_library
     def return_to_library
