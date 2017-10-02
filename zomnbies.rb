@@ -45,7 +45,7 @@ attr_accessor :speed, :strength
   def self.some_die_off
     random_number = rand(0..10).to_i
     # random_number.times { all.pop } -- using pop
-    all = all.drop(random_number)
+    Zombie.all = all.drop(random_number)
   end
   # This class method should use @@plague_level to generate a random number and then create that number of new zombies, adding each one to @@horde. Use @@max_speed and @@max_strength to generate random values for each new zombie's speed and strength.
   def self.spawn
@@ -63,7 +63,14 @@ attr_accessor :speed, :strength
 #---------INSTANCE METHODS -------
 
   def encounter
-
+    if outrun_zombie? == true
+      puts "escaping unscathed "
+    elsif survive_attack? == false
+      puts 'being killed by the zombie'
+    else
+      puts "you are infected and became a zombie"
+      Zombie.all << Zombie.new(rand(MAX_SPEED), rand(MAX_STRENGTH))
+    end
   end
 
   def outrun_zombie?
