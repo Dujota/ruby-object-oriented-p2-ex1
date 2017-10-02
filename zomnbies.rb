@@ -58,14 +58,6 @@ attr_accessor :speed, :strength, :horde, :plague_level
     @@plague_level =+increase
   end
 
-puts Zombie.spawn
-puts @@horde.inspect
-
-
-
-
-
-
 #---------INSTANCE METHODS -------
   def initialize
 
@@ -85,3 +77,9 @@ puts @@horde.inspect
 
 
 end
+
+
+
+
+puts Zombie.spawn
+puts @@horde.inspect
