@@ -8,7 +8,7 @@ class Zombie
     DEFAULT_SPEED = 1
     DEFAULT_STENGHT = 3
 
-attr_accessor :speed, :strength, :horde, :plague_level
+attr_accessor :speed, :strength
 
   def initialize(speed, strength)
     @speed =
@@ -49,7 +49,7 @@ attr_accessor :speed, :strength, :horde, :plague_level
   def self.spawn
     spawned = rand(1..@@plague_level) ### this can return 0, therefore value of array is nil!!!!!!!!! started at range of 1 to fix this issue
     spawned.to_i.times do
-      @@horde << Zombie.new(rand(MAX_SPEED), rand(MAX_STRENGTH))
+      Zombie.all << Zombie.new(rand(MAX_SPEED), rand(MAX_STRENGTH))
     end
   end
 
@@ -59,9 +59,6 @@ attr_accessor :speed, :strength, :horde, :plague_level
   end
 
 #---------INSTANCE METHODS -------
-  def initialize
-
-  end
 
   def encounter
 
@@ -78,8 +75,5 @@ attr_accessor :speed, :strength, :horde, :plague_level
 
 end
 
-
-
-
 puts Zombie.spawn
-puts @@horde.inspect
+puts Zombie.all.inspect
