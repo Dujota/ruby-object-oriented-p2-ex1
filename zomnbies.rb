@@ -43,18 +43,20 @@ attr_accessor :speed, :strength
   end
 
   def self.some_die_off
-
+    random_number = rand(0..10).to_i
+    # random_number.times { all.pop } -- using pop
+    all = all.drop(random_number)
   end
   # This class method should use @@plague_level to generate a random number and then create that number of new zombies, adding each one to @@horde. Use @@max_speed and @@max_strength to generate random values for each new zombie's speed and strength.
   def self.spawn
     spawned = rand(1..@@plague_level) ### this can return 0, therefore value of array is nil!!!!!!!!! started at range of 1 to fix this issue
-    spawned.to_i.times do
+    spawned.to_i.times do ## needed to convert the rand into integer
       Zombie.all << Zombie.new(rand(MAX_SPEED), rand(MAX_STRENGTH))
     end
   end
 
   def self.increase_plague_level
-    increase = rand(3)
+    increase = rand(0..2).to_i
     @@plague_level =+increase
   end
 
